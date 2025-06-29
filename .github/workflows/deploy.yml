@@ -22,10 +22,10 @@ jobs:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
 
       - name: Log in to Azure Container Registry
-        run: az acr login --name mlflowexample
+        run: az acr login --name ${{ secrets.ACR_NAME }}
 
       - name: Set MODEL_URI environment variable
-        run: echo "MODEL_URI=models:/${{ env.UNSER_NAME }}@$${{ env.MODEL_ALIAS }}" >> $GITHUB_ENV
+        run: echo "MODEL_URI=models:/${{ env.UNSER_NAME }}@${{ env.MODEL_ALIAS }}" >> $GITHUB_ENV
 
       - name: Build Docker image
         run: |
