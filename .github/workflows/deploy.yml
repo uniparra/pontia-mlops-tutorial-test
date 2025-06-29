@@ -7,7 +7,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      MODEL_NAME: adult-income-classifier-unai
+      MODEL_NAME: ${{ vars.MODEL_NAME }}
       MODEL_ALIAS: champion
       AZURE_CONTAINER_NAME: model-api-unai
       IMAGE_NAME: model-api-unai
@@ -56,4 +56,4 @@ jobs:
 
       - name: Probe REST API
         run: |
-          curl --fail http://${{ env.IMAGE_NAME }}-${{ github.run_id }}.eastus.azurecontainer.io:8080/health
+          curl --fail http://${{ env.IMAGE_NAME }}-${{ github.run_id }}.${{ env.AZURE_REGION }}.azurecontainer.io:8080/health
