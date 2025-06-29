@@ -38,10 +38,10 @@ jobs:
       - name: Deploy to Azure Container Instances
         run: |
           az container create \
-          --name ${{ vars.MODEL_NAME }} \
+          --name ${{ env.MODEL_NAME }} \
           --image ${{ secrets.ACR_NAME }}/${{ env.IMAGE_NAME }}:latest \
           --resource-group ${{secrets.AZURE_RESOURCE_GROUP}} --registry-login-server ${{ secrets.ACR_NAME }} \
-          --registry-username ${{ secrets.ACR_NAME }} \
+          --registry-username ${{ secrets.ACR_USERNAME }} \
           --registry-password ${{ secrets.ACR_PASSWORD }} \
           --environment-variables MODEL_URI="models:/${{ env.MODEL_NAME }}@${{ env.MODEL_ALIAS }}" MLFLOW_TRACKING_URI="${{ vars.MLFLOW_URL }}" AZURE_STORAGE_CONNECTION_STRING="${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}" \
           --dns-name-label ${{ env.IMAGE_NAME }}-${{ github.run_id }} \
