@@ -22,7 +22,6 @@ logging.basicConfig(
 )
 logger=logging.getLogger("adult-income")
 
-run_name = f"run-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
 run_name = os.getenv('RUN_NAME', 'run_name_not_found')
 
 # Paths
