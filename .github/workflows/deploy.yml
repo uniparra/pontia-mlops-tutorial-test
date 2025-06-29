@@ -29,7 +29,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.ACR_NAME }}/${{ env.IMAGE_NAME }} ./deployment
+          docker build -t ${{ secrets.ACR_NAME }}/${{ env.IMAGE_NAME }}:latest ./deployment
 
       - name: Push Docker image to ACR
         run: |
